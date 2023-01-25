@@ -16,8 +16,8 @@ pageClass: device-page
 |     |     |
 |-----|-----|
 | Model | ZGR904-S  |
-| Vendor  | Envilar  |
-| Description | Envilar touchlink remote |
+| Vendor  | [Envilar](/supported-devices/#v=Envilar)  |
+| Description | Touchlink remote |
 | Exposes | battery, action, linkquality |
 | Picture | ![Envilar ZGR904-S](https://www.zigbee2mqtt.io/images/devices/ZGR904-S.jpg) |
 
@@ -31,7 +31,7 @@ pageClass: device-page
 ## Options
 *[How to use device type specific configuration](../guide/configuration/devices-groups.md#specific-device-options)*
 
-* `simulated_brightness`: Simulate a brightness value. If this device provides a brightness_move_up or brightness_move_down action it is possible to specify the update interval and delta. Example:
+* `simulated_brightness`: Simulate a brightness value. If this device provides a brightness_move_up or brightness_move_down action it is possible to specify the update interval and delta. The action_brightness_delta indicates the delta for each interval. Example:
 ```yaml
 simulated_brightness:
   delta: 20 # delta per interval, default = 20

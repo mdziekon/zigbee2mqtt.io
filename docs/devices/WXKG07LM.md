@@ -16,7 +16,7 @@ pageClass: device-page
 |     |     |
 |-----|-----|
 | Model | WXKG07LM  |
-| Vendor  | Xiaomi  |
+| Vendor  | [Xiaomi](/supported-devices/#v=Xiaomi)  |
 | Description | Aqara D1 double key wireless wall switch |
 | Exposes | battery, voltage, action, linkquality |
 | Picture | ![Xiaomi WXKG07LM](https://www.zigbee2mqtt.io/images/devices/WXKG07LM.jpg) |
@@ -25,6 +25,8 @@ pageClass: device-page
 <!-- Notes BEGIN: You can edit here. Add "## Notes" headline if not already present. -->
 ## Notes
 
+### Battery
+Uses a CR2032 battery
 
 ### Deprecated click event
 By default this device exposes a deprecated `click` event. It's recommended to use the `action` event instead.

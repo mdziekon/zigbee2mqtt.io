@@ -16,16 +16,20 @@ pageClass: device-page
 |     |     |
 |-----|-----|
 | Model | ID-UK21FW09  |
-| Vendor  | Iolloi  |
+| Vendor  | [Iolloi](/supported-devices/#v=Iolloi)  |
 | Description | Zigbee LED smart dimmer switch |
-| Exposes | light (state, brightness), linkquality |
+| Exposes | light (state, brightness), power_on_behavior, linkquality |
 | Picture | ![Iolloi ID-UK21FW09](https://www.zigbee2mqtt.io/images/devices/ID-UK21FW09.jpg) |
 | White-label | Iolloi ID-EU20FW09 |
 
 
 <!-- Notes BEGIN: You can edit here. Add "## Notes" headline if not already present. -->
+## Notes
 
-
+### Re-pairing
+Re-pairing requires the device is removed from any existing network first, this requires a factory reset if the dimmer cannot be gracefully removed from the previous network. Unfortunately the user manual does not cover this procedure, but it is quite simple:
+To perform a factory reset. Turn on the light, press the knob for 5 times and long press the 5th time for 3 seconds. Once reset successfully, the lamp will flicker for 5 times.
+To start paring, turn on the light, press the knob for 2 times and long press the 2nd time for 3 seconds. Once pairing starts, the lamp will flicker for 2 times. When pairing is complete, the lamp will flash once more.
 <!-- Notes END: Do not edit below this line -->
 
 
@@ -62,6 +66,13 @@ To do this send a payload like below to `zigbee2mqtt/FRIENDLY_NAME/set`
   "brightness_step": 40 // Increases brightness by 40
 }
 ````
+
+### Power_on_behavior (enum)
+Controls the behavior when the device is powered on after power loss.
+Value can be found in the published state on the `power_on_behavior` property.
+To read (`/get`) the value publish a message to topic `zigbee2mqtt/FRIENDLY_NAME/get` with payload `{"power_on_behavior": ""}`.
+To write (`/set`) a value publish a message to topic `zigbee2mqtt/FRIENDLY_NAME/set` with payload `{"power_on_behavior": NEW_VALUE}`.
+The possible values are: `off`, `on`, `toggle`, `previous`.
 
 ### Linkquality (numeric)
 Link quality (signal strength).

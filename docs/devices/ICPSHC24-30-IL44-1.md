@@ -16,7 +16,7 @@ pageClass: device-page
 |     |     |
 |-----|-----|
 | Model | ICPSHC24-30-IL44-1  |
-| Vendor  | IKEA  |
+| Vendor  | [IKEA](/supported-devices/#v=IKEA)  |
 | Description | SILVERGLANS IP44 LED driver for wireless control (30 watt) |
 | Exposes | light (state, brightness), effect, power_on_behavior, linkquality |
 | Picture | ![IKEA ICPSHC24-30-IL44-1](https://www.zigbee2mqtt.io/images/devices/ICPSHC24-30-IL44-1.jpg) |
@@ -27,13 +27,7 @@ pageClass: device-page
 
 
 ### Pairing
-Factory reset the light bulb ([video](https://www.youtube.com/watch?v=npxOrPxVfe0)).
-After resetting the bulb will automatically connect.
-
-While pairing, keep the bulb close to the coordinator (adapter).
-
-What works is to use (very) short “on’s” and a little bit longer “off’s”, where you kill the light as soon as the bulb shows signs of turning on.
-Start with bulb on, then off, and then 6 “on’s”, wait in the 6th ON state. (If you try play safe and go for 7 "on's" the reset sometimes fails.)
+Factory reset the drivers by holding the dedicated reset button for few seconds, connected ligts will start pulsing after factory reset.
 <!-- Notes END: Do not edit below this line -->
 
 ## OTA updates
@@ -82,11 +76,11 @@ To write (`/set`) a value publish a message to topic `zigbee2mqtt/FRIENDLY_NAME/
 The possible values are: `blink`, `breathe`, `okay`, `channel_change`, `finish_effect`, `stop_effect`.
 
 ### Power_on_behavior (enum)
-Controls the behavior when the device is powered on.
+Controls the behavior when the device is powered on after power loss.
 Value can be found in the published state on the `power_on_behavior` property.
 To read (`/get`) the value publish a message to topic `zigbee2mqtt/FRIENDLY_NAME/get` with payload `{"power_on_behavior": ""}`.
 To write (`/set`) a value publish a message to topic `zigbee2mqtt/FRIENDLY_NAME/set` with payload `{"power_on_behavior": NEW_VALUE}`.
-The possible values are: `off`, `previous`, `on`.
+The possible values are: `off`, `on`, `toggle`, `previous`.
 
 ### Linkquality (numeric)
 Link quality (signal strength).

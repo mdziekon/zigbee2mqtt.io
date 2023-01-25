@@ -16,24 +16,30 @@ pageClass: device-page
 |     |     |
 |-----|-----|
 | Model | ERS-10TZBVK-AA  |
-| Vendor  | TuYa  |
+| Vendor  | [TuYa](/supported-devices/#v=TuYa)  |
 | Description | Smart knob |
 | Exposes | action, action_step_size, action_transition_time, action_rate, battery, operation_mode, linkquality |
 | Picture | ![TuYa ERS-10TZBVK-AA](https://www.zigbee2mqtt.io/images/devices/ERS-10TZBVK-AA.jpg) |
 
 
 <!-- Notes BEGIN: You can edit here. Add "## Notes" headline if not already present. -->
-## Pairing
+## Notes
+
+### Pairing
 To pair, press the reset button on the back until the green LED flashes.
 
 > Note: When you release the reset button, the green LED should keep flashing until the device is paired. If it only flashes a few times and then stops, your battery level is most likely too low (<3v) and you need to replace the battery.
+
+### The `toggle` action switches on/off an unexpected zigbee device
+The source of the problem is that manufactures of the knob and another device placed them into group 0 by default. To bypass it, you should manually create a group in Z2M with different ID (ID=1, for example) and add your knob inside.
+For more details take a look at [the issue](https://github.com/Koenkk/zigbee2mqtt/issues/12397).
 <!-- Notes END: Do not edit below this line -->
 
 
 ## Options
 *[How to use device type specific configuration](../guide/configuration/devices-groups.md#specific-device-options)*
 
-* `simulated_brightness`: Simulate a brightness value. If this device provides a brightness_move_up or brightness_move_down action it is possible to specify the update interval and delta. Example:
+* `simulated_brightness`: Simulate a brightness value. If this device provides a brightness_move_up or brightness_move_down action it is possible to specify the update interval and delta. The action_brightness_delta indicates the delta for each interval. Example:
 ```yaml
 simulated_brightness:
   delta: 20 # delta per interval, default = 20

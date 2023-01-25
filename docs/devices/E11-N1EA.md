@@ -16,9 +16,9 @@ pageClass: device-page
 |     |     |
 |-----|-----|
 | Model | E11-N1EA  |
-| Vendor  | Sengled  |
+| Vendor  | [Sengled](/supported-devices/#v=Sengled)  |
 | Description | Element plus color (A19) |
-| Exposes | light (state, brightness, color_temp, color_temp_startup, color_xy), effect, linkquality |
+| Exposes | light (state, brightness, color_temp, color_temp_startup, color_xy), power_on_behavior, power, energy, linkquality |
 | Picture | ![Sengled E11-N1EA](https://www.zigbee2mqtt.io/images/devices/E11-N1EA.jpg) |
 
 
@@ -37,6 +37,14 @@ This device supports OTA updates, for more information see [OTA updates](../guid
 * `transition`: Controls the transition time (in seconds) of on/off, brightness, color temperature (if applicable) and color (if applicable) changes. Defaults to `0` (no transition). The value must be a number with a minimum value of `0`
 
 * `color_sync`: When enabled colors will be synced, e.g. if the light supports both color x/y and color temperature a conversion from color x/y to color temperature will be done when setting the x/y color (default true). The value must be `true` or `false`
+
+* `power_precision`: Number of digits after decimal point for power, takes into effect on next report of device. The value must be a number with a minimum value of `0` and with a with a maximum value of `3`
+
+* `power_calibration`: Calibrates the power value (percentual offset), takes into effect on next report of device. The value must be a number.
+
+* `energy_precision`: Number of digits after decimal point for energy, takes into effect on next report of device. The value must be a number with a minimum value of `0` and with a with a maximum value of `3`
+
+* `energy_calibration`: Calibrates the energy value (percentual offset), takes into effect on next report of device. The value must be a number.
 
 
 ## Exposes
@@ -76,12 +84,24 @@ To do this send a payload like below to `zigbee2mqtt/FRIENDLY_NAME/set`
 }
 ````
 
-### Effect (enum)
-Triggers an effect on the light (e.g. make light blink for a few seconds).
-Value will **not** be published in the state.
-It's not possible to read (`/get`) this value.
-To write (`/set`) a value publish a message to topic `zigbee2mqtt/FRIENDLY_NAME/set` with payload `{"effect": NEW_VALUE}`.
-The possible values are: `blink`, `breathe`, `okay`, `channel_change`, `finish_effect`, `stop_effect`.
+### Power_on_behavior (enum)
+Controls the behavior when the device is powered on after power loss.
+Value can be found in the published state on the `power_on_behavior` property.
+To read (`/get`) the value publish a message to topic `zigbee2mqtt/FRIENDLY_NAME/get` with payload `{"power_on_behavior": ""}`.
+To write (`/set`) a value publish a message to topic `zigbee2mqtt/FRIENDLY_NAME/set` with payload `{"power_on_behavior": NEW_VALUE}`.
+The possible values are: `off`, `on`, `toggle`, `previous`.
+
+### Power (numeric)
+Instantaneous measured power.
+Value can be found in the published state on the `power` property.
+It's not possible to read (`/get`) or write (`/set`) this value.
+The unit of this value is `W`.
+
+### Energy (numeric)
+Sum of consumed energy.
+Value can be found in the published state on the `energy` property.
+It's not possible to read (`/get`) or write (`/set`) this value.
+The unit of this value is `kWh`.
 
 ### Linkquality (numeric)
 Link quality (signal strength).

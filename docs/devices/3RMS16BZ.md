@@ -16,7 +16,7 @@ pageClass: device-page
 |     |     |
 |-----|-----|
 | Model | 3RMS16BZ  |
-| Vendor  | Third Reality  |
+| Vendor  | [Third Reality](/supported-devices/#v=Third%20Reality)  |
 | Description | Wireless motion sensor |
 | Exposes | occupancy, battery_low, battery, voltage, linkquality |
 | Picture | ![Third Reality 3RMS16BZ](https://www.zigbee2mqtt.io/images/devices/3RMS16BZ.jpg) |
@@ -26,6 +26,9 @@ pageClass: device-page
 
 
 <!-- Notes END: Do not edit below this line -->
+
+## OTA updates
+This device supports OTA updates, for more information see [OTA updates](../guide/usage/ota_updates.md).
 
 
 

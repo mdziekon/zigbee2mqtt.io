@@ -16,15 +16,17 @@ pageClass: device-page
 |     |     |
 |-----|-----|
 | Model | HS1WL/HS3WL  |
-| Vendor  | HEIMAN  |
+| Vendor  | [HEIMAN](/supported-devices/#v=HEIMAN)  |
 | Description | Water leakage sensor |
 | Exposes | water_leak, battery_low, tamper, battery, linkquality |
 | Picture | ![HEIMAN HS1WL/HS3WL](https://www.zigbee2mqtt.io/images/devices/HS1WL-HS3WL.jpg) |
 
 
 <!-- Notes BEGIN: You can edit here. Add "## Notes" headline if not already present. -->
+## Notes
 
-
+### Pairing
+Push the reset button of the device with a paperclip for 5 seconds close to the coordinator. While pairing the LED on the front is flashing green. Once the pairing is finished, the LED stays off.
 <!-- Notes END: Do not edit below this line -->
 
 

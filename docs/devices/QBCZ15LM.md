@@ -16,9 +16,9 @@ pageClass: device-page
 |     |     |
 |-----|-----|
 | Model | QBCZ15LM  |
-| Vendor  | Xiaomi  |
+| Vendor  | [Xiaomi](/supported-devices/#v=Xiaomi)  |
 | Description | Aqara smart wall outlet H1 (USB) |
-| Exposes | switch (state), power, energy, temperature, voltage, current, power_outage_memory, led_disabled_night, button_lock, button_switch_mode, overload_protection, linkquality |
+| Exposes | switch (state), power, energy, device_temperature, voltage, current, power_outage_memory, led_disabled_night, button_lock, button_switch_mode, overload_protection, linkquality |
 | Picture | ![Xiaomi QBCZ15LM](https://www.zigbee2mqtt.io/images/devices/QBCZ15LM.jpg) |
 
 
@@ -34,9 +34,23 @@ This device supports OTA updates, for more information see [OTA updates](../guid
 ## Options
 *[How to use device type specific configuration](../guide/configuration/devices-groups.md#specific-device-options)*
 
-* `temperature_precision`: Number of digits after decimal point for temperature, takes into effect on next report of device. The value must be a number with a minimum value of `0` and with a with a maximum value of `3`
+* `power_calibration`: Calibrates the power value (percentual offset), takes into effect on next report of device. The value must be a number.
 
-* `temperature_calibration`: Calibrates the temperature value (absolute offset), takes into effect on next report of device. The value must be a number.
+* `power_precision`: Number of digits after decimal point for power, takes into effect on next report of device. The value must be a number with a minimum value of `0` and with a with a maximum value of `3`
+
+* `energy_calibration`: Calibrates the energy value (percentual offset), takes into effect on next report of device. The value must be a number.
+
+* `energy_precision`: Number of digits after decimal point for energy, takes into effect on next report of device. The value must be a number with a minimum value of `0` and with a with a maximum value of `3`
+
+* `device_temperature_calibration`: Calibrates the device_temperature value (absolute offset), takes into effect on next report of device. The value must be a number.
+
+* `voltage_calibration`: Calibrates the voltage value (percentual offset), takes into effect on next report of device. The value must be a number.
+
+* `voltage_precision`: Number of digits after decimal point for voltage, takes into effect on next report of device. The value must be a number with a minimum value of `0` and with a with a maximum value of `3`
+
+* `current_calibration`: Calibrates the current value (percentual offset), takes into effect on next report of device. The value must be a number.
+
+* `current_precision`: Number of digits after decimal point for current, takes into effect on next report of device. The value must be a number with a minimum value of `0` and with a with a maximum value of `3`
 
 
 ## Exposes
@@ -63,9 +77,9 @@ Value can be found in the published state on the `energy` property.
 It's not possible to read (`/get`) or write (`/set`) this value.
 The unit of this value is `kWh`.
 
-### Temperature (numeric)
-Measured temperature value.
-Value can be found in the published state on the `temperature` property.
+### Device_temperature (numeric)
+Temperature of the device.
+Value can be found in the published state on the `device_temperature` property.
 It's not possible to read (`/get`) or write (`/set`) this value.
 The unit of this value is `°C`.
 

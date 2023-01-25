@@ -16,15 +16,19 @@ pageClass: device-page
 |     |     |
 |-----|-----|
 | Model | FUT035Z  |
-| Vendor  | Miboxer  |
+| Vendor  | [Miboxer](/supported-devices/#v=Miboxer)  |
 | Description | Dual white LED controller |
-| Exposes | light (state, brightness, color_temp), effect, linkquality |
+| Exposes | light (state, brightness, color_temp), effect, power_on_behavior, linkquality |
 | Picture | ![Miboxer FUT035Z](https://www.zigbee2mqtt.io/images/devices/FUT035Z.jpg) |
 
 
 <!-- Notes BEGIN: You can edit here. Add "## Notes" headline if not already present. -->
+## Notes
 
+### Pairing
+The device will enter pairing mode when turned on, if it has not been paired previously. Pairing mode can be forced by pressing the SET button 3 times in succession.
 
+The lights connected to the controller will fade in and out when the controlled is in pairing mode.
 <!-- Notes END: Do not edit below this line -->
 
 
@@ -74,6 +78,13 @@ Value will **not** be published in the state.
 It's not possible to read (`/get`) this value.
 To write (`/set`) a value publish a message to topic `zigbee2mqtt/FRIENDLY_NAME/set` with payload `{"effect": NEW_VALUE}`.
 The possible values are: `blink`, `breathe`, `okay`, `channel_change`, `finish_effect`, `stop_effect`.
+
+### Power_on_behavior (enum)
+Controls the behavior when the device is powered on after power loss.
+Value can be found in the published state on the `power_on_behavior` property.
+To read (`/get`) the value publish a message to topic `zigbee2mqtt/FRIENDLY_NAME/get` with payload `{"power_on_behavior": ""}`.
+To write (`/set`) a value publish a message to topic `zigbee2mqtt/FRIENDLY_NAME/set` with payload `{"power_on_behavior": NEW_VALUE}`.
+The possible values are: `off`, `on`, `toggle`, `previous`.
 
 ### Linkquality (numeric)
 Link quality (signal strength).

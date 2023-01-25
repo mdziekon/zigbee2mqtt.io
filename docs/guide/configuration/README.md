@@ -14,13 +14,17 @@ mqtt:
   server: mqtt://localhost:1883
 serial:
   port: /dev/ttyUSB0
-frontend:
-  port: 8080
+# Will run frontend on port 8080
+frontend: true 
 ```
 
 ::: tip CONVENTION
 The _dot-notation_ of a config-key like `mqtt.server` means `server` property within the `mqtt`
 section. All _dot-notation_ references are absolute.
+:::
+
+::: warning ATTENTION
+Be aware of the implications using `permit_join: true` and read the details in the [Permit join](zigbee-network.md#permit-join) documentation.
 :::
 
 ## Environment variables

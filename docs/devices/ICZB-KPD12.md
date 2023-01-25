@@ -16,7 +16,7 @@ pageClass: device-page
 |     |     |
 |-----|-----|
 | Model | ICZB-KPD12  |
-| Vendor  | iCasa  |
+| Vendor  | [iCasa](/supported-devices/#v=iCasa)  |
 | Description | Zigbee 3.0 Keypad Pulse 2 |
 | Exposes | battery, action, linkquality |
 | Picture | ![iCasa ICZB-KPD12](https://www.zigbee2mqtt.io/images/devices/ICZB-KPD12.jpg) |
@@ -32,7 +32,7 @@ pageClass: device-page
 ## Options
 *[How to use device type specific configuration](../guide/configuration/devices-groups.md#specific-device-options)*
 
-* `simulated_brightness`: Simulate a brightness value. If this device provides a brightness_move_up or brightness_move_down action it is possible to specify the update interval and delta. Example:
+* `simulated_brightness`: Simulate a brightness value. If this device provides a brightness_move_up or brightness_move_down action it is possible to specify the update interval and delta. The action_brightness_delta indicates the delta for each interval. Example:
 ```yaml
 simulated_brightness:
   delta: 20 # delta per interval, default = 20

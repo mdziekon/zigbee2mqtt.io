@@ -19,7 +19,7 @@ Navigate to the directory where you whish to store the Zigbee2MQTT data and exec
 wget https://raw.githubusercontent.com/Koenkk/zigbee2mqtt/master/data/configuration.yaml -P data
 ```
 
-Now configure the MQTT server and adapter location as explained [here](./01_linux.md#configuring).
+Now configure the MQTT server, adapter location, network key and frontend as explained [here](./01_linux.md#configuring).
 
 ## Running the container
 
@@ -27,7 +27,9 @@ Execute the following command, update the `--device` parameter to match the loca
 
 ```bash
 $ docker run \
-   --device=/dev/ttyACM0 \
+   --name zigbee2mqtt \
+   --restart=unless-stopped \
+   --device=/dev/serial/by-id/usb-Texas_Instruments_TI_CC2531_USB_CDC___0X00124B0018ED3DDF-if00:/dev/ttyACM0 \
    -p 8080:8080 \
    -v $(pwd)/data:/app/data \
    -v /run/udev:/run/udev:ro \
@@ -36,7 +38,9 @@ $ docker run \
 ```
 
 **Parameters explanation:**  
-* `--device=/dev/ttyACM0`: Location of adapter (e.g. CC2531)
+* `--name zigbee2mqtt`: Name of container
+* `--restart=unless-stopped`: Automatically start on boot and restart after a crash
+* `--device=/dev/serial/by-id/usb-Texas_Instruments_TI_CC2531_USB_CDC___0X00124B0018ED3DDF-if00:/dev/ttyACM0`: Location of adapter (e.g. CC2531). The path before the `:` is the path on the host, the path after it is the path that is mapped to inside the container. You should always use the `/dev/serial/by-id/` path on the host.
 * `-v $(pwd)/data:/app/data`: Directory where Zigbee2MQTT stores it configuration (pwd maps to the current working directory)
 * `-v /run/udev:/run/udev:ro`: only required for auto-detecting the port and some adapters like ConBee
 * `-e TZ=Europe/Amsterdam`: Configure the timezone
@@ -67,10 +71,11 @@ uid=1001(pi) gid=1001(pi) Groups=...
 ```
 $ sudo docker run \
    --name=zigbee2mqtt \
+   --restart=unless-stopped \
    -p 8080:8080 \
    -v $(pwd)/data:/app/data \
    -v /run/udev:/run/udev:ro \
-   --device=/dev/ttyACM0 \
+   --device=/dev/serial/by-id/usb-Texas_Instruments_TI_CC2531_USB_CDC___0X00124B0018ED3DDF-if00:/dev/ttyACM0 \
    --user 1001:1001 \
    --group-add dialout \
    -e TZ=Europe/Amsterdam \
@@ -119,7 +124,7 @@ services:
       - TZ=Europe/Berlin
     devices:
       # Make sure this matched your adapter location
-      - /dev/ttyUSB0:/dev/ttyACM0
+      - /dev/serial/by-id/usb-Texas_Instruments_TI_CC2531_USB_CDC___0X00124B0018ED3DDF-if00:/dev/ttyACM0
 ```
 
 You can also run a rootless container with docker-compose by adding the required attributes to the `zigbee2mqtt` service block in your `docker-compose.yml`:
@@ -447,6 +452,20 @@ The workaround is based on the solution found at [Add support for devices with "
 	```shell
 	docker stack deploy zigbee2mqtt --compose-file docker-stack-zigbee2mqtt.yml
 	```
+
+### Troubleshooting
+
+It could happen that even after the above the container is not starting correctly and bringing a "Operation not permitted" message in the log of the service for the device:
+```
+Error: Error while opening serialport 'Error: Error: Operation not permitted, cannot open /dev/zigbee-serial'
+```
+
+This is due to the usage of cgroupv2 instead of cgroupv1 which is not fully supported by docker/containerd.
+To switch from cgroupv2 to cgroupv1 you have to add `systemd.unified_cgroup_hierarchy=false` to the grub cmdline.
+E.g. on an Raspberry Pi 4 with Raspian Bullseye you can add it to the end of the line in the /boot/cmdline.txt file:
+```
+[...] rootfstype=ext4 fsck.repair=yes rootwait cgroup_enable=cpuset cgroup_enable=memory cgroup_memory=1 systemd.unified_cgroup_hierarchy=false
+```
 
 ## Docker on Synology DSM 7.0
 

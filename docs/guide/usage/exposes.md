@@ -69,10 +69,39 @@ Example:
 ```
 
 ### List
-Indicates a device exposes a list of values. Currently the only possible `item_type` is `number`.
+Indicates a device exposes a list of values. The `item_type` can be any other exposes where the `property` is omitted.
+Optionally a `length_min` and `length_max` property can be added which defines the min/max number of entries in the list.
 
 Examples:
-- `{"type":"list","name":"no_occupancy_since","property":"no_occupancy_since","access":1,"item_type":"number"}`
+```json
+{
+    "type":"list",
+    "name":"no_occupancy_since",
+    "property":"no_occupancy_since",
+    "access":1,
+    "item_type":{"access": 3, "name": "temperature", "type": "numeric"}
+}
+```
+
+```json
+{
+    "type": "list",
+    "name": "schedule",
+    "property": "schedule",
+    "access": 3,
+    "length_min": 1,
+    "length_max": 10,
+    "item_type": {
+        "type": "composite",
+        "name": "day_time",
+        "features": [
+            {"access": 3, "name": "day", "property": "day", "type": "enum","values": ["monday", "tuesday", "wednesday"]},
+            {"access": 3, "name": "hour", "property": "hour", "type": "numeric",},
+            {"access": 3, "name": "minute", "property": "minute", "type": "numeric"},
+        ]
+    }
+}
+```
 
 ## Specific
 
@@ -174,7 +203,7 @@ Example:
 
 ### Climate
 Indicates this device exposes climate functionality.
-- Possible features are: `occupied_heating_setpoint`, `current_heating_setpoint`, `occupied_cooling_setpoint`, `local_temperature`, `system_mode`, `running_state`, `fan_mode`, `preset`, `away_mode`, `local_temperature_calibration`, `sensor`, `away_mode`, `pi_heating_demand` and `ac_louver_position`.
+- Possible features are: `occupied_heating_setpoint`, `current_heating_setpoint`, `occupied_cooling_setpoint`, `unoccupied_heating_setpoint`, `unoccupied_cooling_setpoint`, `local_temperature`, `system_mode`, `running_state`, `fan_mode`, `preset`, `local_temperature_calibration`, `pi_heating_demand`, `running_mode`, `ac_louver_position` and `swing_mode`.
 - Never has both `occupied_heating_setpoint` and `current_heating_setpoint`.
 - Possible values for `system_mode` are `off`, `heat`, `cool`, `auto`, `dry` and `fan_only`.
 - Possible values for `running_state` are `idle`, `heat`, `cool`.
@@ -192,7 +221,6 @@ Example:
         {"type":"enum","name":"preset","property":"preset","values":["hold", "program"],"access":7},
         {"type":"enum","name":"running_state","property":"running_state","values":["idle", "heat", "cool"],"access":3},
         {"type":"enum","name":"mode","property":"fan_mode","values":["off", "low", "medium", "high", "on", "auto", "smart"],"access":7},
-        {"type":"binary","name":"away_mode","property":"away_mode","value_on":"ON","value_off":"OFF","access":7},
     ]
 }
 ```

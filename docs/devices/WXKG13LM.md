@@ -16,7 +16,7 @@ pageClass: device-page
 |     |     |
 |-----|-----|
 | Model | WXKG13LM  |
-| Vendor  | Xiaomi  |
+| Vendor  | [Xiaomi](/supported-devices/#v=Xiaomi)  |
 | Description | Aqara T1 wireless mini switch |
 | Exposes | battery, voltage, action, linkquality |
 | Picture | ![Xiaomi WXKG13LM](https://www.zigbee2mqtt.io/images/devices/WXKG13LM.jpg) |
@@ -26,6 +26,9 @@ pageClass: device-page
 
 
 <!-- Notes END: Do not edit below this line -->
+
+## OTA updates
+This device supports OTA updates, for more information see [OTA updates](../guide/usage/ota_updates.md).
 
 
 

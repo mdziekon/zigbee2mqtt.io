@@ -16,7 +16,7 @@ pageClass: device-page
 |     |     |
 |-----|-----|
 | Model | KK-ES-J01W  |
-| Vendor  | Konke  |
+| Vendor  | [Konke](/supported-devices/#v=Konke)  |
 | Description | Room temperature, relative humidity and illuminance sensor |
 | Exposes | battery, illuminance, illuminance_lux, humidity, temperature, linkquality |
 | Picture | ![Konke KK-ES-J01W](https://www.zigbee2mqtt.io/images/devices/KK-ES-J01W.jpg) |
@@ -31,11 +31,7 @@ pageClass: device-page
 ## Options
 *[How to use device type specific configuration](../guide/configuration/devices-groups.md#specific-device-options)*
 
-* `illuminance_precision`: Number of digits after decimal point for illuminance, takes into effect on next report of device. The value must be a number with a minimum value of `0` and with a with a maximum value of `3`
-
 * `illuminance_calibration`: Calibrates the illuminance value (percentual offset), takes into effect on next report of device. The value must be a number.
-
-* `illuminance_lux_precision`: Number of digits after decimal point for illuminance_lux, takes into effect on next report of device. The value must be a number with a minimum value of `0` and with a with a maximum value of `3`
 
 * `illuminance_lux_calibration`: Calibrates the illuminance_lux value (percentual offset), takes into effect on next report of device. The value must be a number.
 

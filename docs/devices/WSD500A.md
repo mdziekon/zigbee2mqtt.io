@@ -16,15 +16,17 @@ pageClass: device-page
 |     |     |
 |-----|-----|
 | Model | WSD500A  |
-| Vendor  | TuYa  |
+| Vendor  | [TuYa](/supported-devices/#v=TuYa)  |
 | Description | Temperature & humidity sensor |
 | Exposes | battery, temperature, humidity, voltage, linkquality |
 | Picture | ![TuYa WSD500A](https://www.zigbee2mqtt.io/images/devices/WSD500A.jpg) |
 
 
 <!-- Notes BEGIN: You can edit here. Add "## Notes" headline if not already present. -->
+## Notes
 
-
+### Battery
+If battery value is not showing in Zigbee2MQTT briefly pressing reset button AFTER device is fully paired usually resolves the issue.
 <!-- Notes END: Do not edit below this line -->
 
 

@@ -16,7 +16,7 @@ pageClass: device-page
 |     |     |
 |-----|-----|
 | Model | HS2ESK-E  |
-| Vendor  | HEIMAN  |
+| Vendor  | [HEIMAN](/supported-devices/#v=HEIMAN)  |
 | Description | Smart in wall plug |
 | Exposes | switch (state), power, current, voltage, linkquality |
 | Picture | ![HEIMAN HS2ESK-E](https://www.zigbee2mqtt.io/images/devices/HS2ESK-E.jpg) |
@@ -33,9 +33,15 @@ pageClass: device-page
 
 * `power_calibration`: Calibrates the power value (percentual offset), takes into effect on next report of device. The value must be a number.
 
+* `power_precision`: Number of digits after decimal point for power, takes into effect on next report of device. The value must be a number with a minimum value of `0` and with a with a maximum value of `3`
+
 * `current_calibration`: Calibrates the current value (percentual offset), takes into effect on next report of device. The value must be a number.
 
+* `current_precision`: Number of digits after decimal point for current, takes into effect on next report of device. The value must be a number with a minimum value of `0` and with a with a maximum value of `3`
+
 * `voltage_calibration`: Calibrates the voltage value (percentual offset), takes into effect on next report of device. The value must be a number.
+
+* `voltage_precision`: Number of digits after decimal point for voltage, takes into effect on next report of device. The value must be a number with a minimum value of `0` and with a with a maximum value of `3`
 
 
 ## Exposes

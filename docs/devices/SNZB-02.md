@@ -16,7 +16,7 @@ pageClass: device-page
 |     |     |
 |-----|-----|
 | Model | SNZB-02  |
-| Vendor  | SONOFF  |
+| Vendor  | [SONOFF](/supported-devices/#v=SONOFF)  |
 | Description | Temperature and humidity sensor |
 | Exposes | battery, temperature, humidity, voltage, linkquality |
 | Picture | ![SONOFF SNZB-02](https://www.zigbee2mqtt.io/images/devices/SNZB-02.jpg) |
@@ -26,6 +26,11 @@ pageClass: device-page
 <!-- Notes BEGIN: You can edit here. Add "## Notes" headline if not already present. -->
 ## Notes
 
+### Troubleshoot
+In case the sensor got stucked and will not send data anymore, try the following steps to restore it.
+1. Force remove the device via the frontend
+2. Restart Zigbee2MQTT
+3. Re-pair the device
 
 ### Pairing
 Long press reset button for 5s until the LED indicator flashes three times, which means the device has entered pairing mode

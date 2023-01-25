@@ -16,7 +16,7 @@ pageClass: device-page
 |     |     |
 |-----|-----|
 | Model | 3RSP019BZ  |
-| Vendor  | Third Reality  |
+| Vendor  | [Third Reality](/supported-devices/#v=Third%20Reality)  |
 | Description | Zigbee / BLE smart plug |
 | Exposes | switch (state), linkquality |
 | Picture | ![Third Reality 3RSP019BZ](https://www.zigbee2mqtt.io/images/devices/3RSP019BZ.jpg) |
@@ -46,6 +46,9 @@ After your Smart Plug is powered on, press and hold the button for more than 10 
 until the LED light flashes indicating that your Smart Plug is in pairing mode. (The mode won’t
 be change while factory reset your Smart Plug.)
 <!-- Notes END: Do not edit below this line -->
+
+## OTA updates
+This device supports OTA updates, for more information see [OTA updates](../guide/usage/ota_updates.md).
 
 
 

@@ -16,7 +16,7 @@ pageClass: device-page
 |     |     |
 |-----|-----|
 | Model | AU-A1ZBR2GW  |
-| Vendor  | Aurora Lighting  |
+| Vendor  | [Aurora Lighting](/supported-devices/#v=Aurora%20Lighting)  |
 | Description | AOne two gang wireless battery rotary dimmer |
 | Exposes | battery, action, linkquality |
 | Picture | ![Aurora Lighting AU-A1ZBR2GW](https://www.zigbee2mqtt.io/images/devices/AU-A1ZBR2GW.jpg) |
@@ -31,7 +31,7 @@ pageClass: device-page
 ## Options
 *[How to use device type specific configuration](../guide/configuration/devices-groups.md#specific-device-options)*
 
-* `simulated_brightness`: Simulate a brightness value. If this device provides a brightness_move_up or brightness_move_down action it is possible to specify the update interval and delta. Example:
+* `simulated_brightness`: Simulate a brightness value. If this device provides a brightness_move_up or brightness_move_down action it is possible to specify the update interval and delta. The action_brightness_delta indicates the delta for each interval. Example:
 ```yaml
 simulated_brightness:
   delta: 20 # delta per interval, default = 20

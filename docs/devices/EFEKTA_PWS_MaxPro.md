@@ -16,7 +16,7 @@ pageClass: device-page
 |     |     |
 |-----|-----|
 | Model | EFEKTA_PWS_MaxPro  |
-| Vendor  | Custom devices (DiY)  |
+| Vendor  | [Custom devices (DiY)](/supported-devices/#v=Custom%20devices%20(DiY))  |
 | Description | [Plant watering sensor EFEKTA PWS Max Pro,  long battery life](http://efektalab.com/PWS_MaxPro) |
 | Exposes | soil_moisture, battery, illuminance, temperature, humidity, linkquality |
 | Picture | ![Custom devices (DiY) EFEKTA_PWS_MaxPro](https://www.zigbee2mqtt.io/images/devices/EFEKTA_PWS_MaxPro.jpg) |
@@ -39,11 +39,7 @@ pageClass: device-page
 
 * `humidity_calibration`: Calibrates the humidity value (absolute offset), takes into effect on next report of device. The value must be a number.
 
-* `illuminance_precision`: Number of digits after decimal point for illuminance, takes into effect on next report of device. The value must be a number with a minimum value of `0` and with a with a maximum value of `3`
-
 * `illuminance_calibration`: Calibrates the illuminance value (percentual offset), takes into effect on next report of device. The value must be a number.
-
-* `illuminance_lux_precision`: Number of digits after decimal point for illuminance_lux, takes into effect on next report of device. The value must be a number with a minimum value of `0` and with a with a maximum value of `3`
 
 * `illuminance_lux_calibration`: Calibrates the illuminance_lux value (percentual offset), takes into effect on next report of device. The value must be a number.
 

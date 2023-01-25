@@ -16,7 +16,7 @@ pageClass: device-page
 |     |     |
 |-----|-----|
 | Model | EFEKTA_eON29wz  |
-| Vendor  | Custom devices (DiY)  |
+| Vendor  | [Custom devices (DiY)](/supported-devices/#v=Custom%20devices%20(DiY))  |
 | Description | [Mini weather station, barometer, forecast, charts, temperature, humidity, light](http://efektalab.com/eON290wz) |
 | Exposes | battery, illuminance, temperature, humidity, pressure, linkquality |
 | Picture | ![Custom devices (DiY) EFEKTA_eON29wz](https://www.zigbee2mqtt.io/images/devices/EFEKTA_eON29wz.jpg) |
@@ -46,11 +46,7 @@ Instructions on how to build this device can be found [here](https://github.com/
 
 * `pressure_calibration`: Calibrates the pressure value (absolute offset), takes into effect on next report of device. The value must be a number.
 
-* `illuminance_precision`: Number of digits after decimal point for illuminance, takes into effect on next report of device. The value must be a number with a minimum value of `0` and with a with a maximum value of `3`
-
 * `illuminance_calibration`: Calibrates the illuminance value (percentual offset), takes into effect on next report of device. The value must be a number.
-
-* `illuminance_lux_precision`: Number of digits after decimal point for illuminance_lux, takes into effect on next report of device. The value must be a number with a minimum value of `0` and with a with a maximum value of `3`
 
 * `illuminance_lux_calibration`: Calibrates the illuminance_lux value (percentual offset), takes into effect on next report of device. The value must be a number.
 

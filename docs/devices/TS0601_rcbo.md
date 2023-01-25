@@ -16,7 +16,7 @@ pageClass: device-page
 |     |     |
 |-----|-----|
 | Model | TS0601_rcbo  |
-| Vendor  | TuYa  |
+| Vendor  | [TuYa](/supported-devices/#v=TuYa)  |
 | Description | DIN mount RCBO with smart energy metering |
 | Exposes | meter_number, state, alarm, trip, child_lock, power_on_behavior, countdown_timer, voltage_rms, current, current_average, power, voltage, energy, temperature, energy_consumed, clear_device_data, linkquality |
 | Picture | ![TuYa TS0601_rcbo](https://www.zigbee2mqtt.io/images/devices/TS0601_rcbo.jpg) |
@@ -119,7 +119,7 @@ The unit of this value is `kWh`.
 Value will **not** be published in the state.
 It's not possible to read (`/get`) this value.
 To write (`/set`) a value publish a message to topic `zigbee2mqtt/FRIENDLY_NAME/set` with payload `{"clear_device_data": NEW_VALUE}`.
-The possible values are: `clear`.
+The possible values are: ``.
 
 ### Linkquality (numeric)
 Link quality (signal strength).

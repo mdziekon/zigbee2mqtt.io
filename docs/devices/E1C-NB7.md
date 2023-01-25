@@ -16,7 +16,7 @@ pageClass: device-page
 |     |     |
 |-----|-----|
 | Model | E1C-NB7  |
-| Vendor  | Sengled  |
+| Vendor  | [Sengled](/supported-devices/#v=Sengled)  |
 | Description | Smart plug with energy tracker |
 | Exposes | switch (state), power, energy, linkquality |
 | Picture | ![Sengled E1C-NB7](https://www.zigbee2mqtt.io/images/devices/E1C-NB7.jpg) |
@@ -27,9 +27,17 @@ pageClass: device-page
 
 <!-- Notes END: Do not edit below this line -->
 
-## OTA updates
-This device supports OTA updates, for more information see [OTA updates](../guide/usage/ota_updates.md).
 
+## Options
+*[How to use device type specific configuration](../guide/configuration/devices-groups.md#specific-device-options)*
+
+* `power_precision`: Number of digits after decimal point for power, takes into effect on next report of device. The value must be a number with a minimum value of `0` and with a with a maximum value of `3`
+
+* `power_calibration`: Calibrates the power value (percentual offset), takes into effect on next report of device. The value must be a number.
+
+* `energy_precision`: Number of digits after decimal point for energy, takes into effect on next report of device. The value must be a number with a minimum value of `0` and with a with a maximum value of `3`
+
+* `energy_calibration`: Calibrates the energy value (percentual offset), takes into effect on next report of device. The value must be a number.
 
 
 ## Exposes

@@ -89,7 +89,24 @@ automation:
 ## Groups
 Groups discovery is supported for groups of lights, switches, locks and covers. For other types you have to manually create a config in the Home Assistant `configuration.yaml`.
 
-## Exposing switch as a light
+## Overriding discovery properties
+Any Home Assistant MQTT discovery property can be overridden on a device. Two examples are shown below. For a full and current list of discovery properties, see [the Home Assistant MQTT Discovery integration](https://www.home-assistant.io/docs/mqtt/discovery/) and [the Home Assistant extension](https://github.com/Koenkk/zigbee2mqtt/blob/03ba647dc6b5f299f8f3ab441712999fcb3a253e/lib/extension/homeassistant.ts) in the Zigbee2MQTT source code.
+
+### Changing `supported_color_modes`
+This is useful for switching light bulbs from reporting values from X/Y (which is the default) to reporting in hue / saturation (which is what bulbs report color in when changing via hue or saturation, such as with the `hue_move` and `saturation_move` commands).
+
+This example changes a [light's `supported_color_modes` discovery property](https://www.home-assistant.io/integrations/light.mqtt/#supported_color_modes) to hue / saturation and color temperature:
+
+```yaml
+devices:
+  "0x12345678":
+    friendly_name: my_light
+    homeassistant:
+      light:
+        supported_color_modes: ['hs','color_temp']
+```
+
+### Exposing switch as a light
 If your device is currently discovered as a switch and you want to discover it as a light, the following config in the Zigbee2MQTT `configuration.yaml` can be used:
 
 ```yaml
@@ -120,8 +137,6 @@ devices:
         value_template: null
         state_value_template: '{{ value_json.state_right }}'
 ```
-
-If you are also using device specific overrides, make sure that they are configured under the new device type rather than the original device type.
 
 ## Using a custom name for the device and entities
 In order to get a more readable name for the device and entities in Home Assistant, a specific name for Home Assistant can be set in the device configuration. If set, this name will be used instead of `friendly_name`.
@@ -206,40 +221,49 @@ script:
             "force": {% if states.input_boolean.zigbee2mqtt_force_remove.state == "off" %}false{% else %}true{% endif %}
           }
 
-# Timer for joining time remaining (120 sec = 2 min)
+# Timer for joining time remaining (254 sec)
 timer:
   zigbee_permit_join:
     name: Time remaining
-    duration: 120
+    duration: 254
 
-sensor:
-  # Sensor for monitoring the bridge state
-  - platform: mqtt
-    name: Zigbee2MQTT Bridge state
-    state_topic: "zigbee2mqtt/bridge/state"
-    icon: mdi:router-wireless
-  # Sensor for Showing the Zigbee2MQTT Version
-  - platform: mqtt
-    name: Zigbee2MQTT Version
-    state_topic: "zigbee2mqtt/bridge/info"
-    value_template: "{{ value_json.version }}"
-    icon: mdi:zigbee
-  # Sensor for Showing the Coordinator Version
-  - platform: mqtt
-    name: Coordinator Version
-    state_topic: "zigbee2mqtt/bridge/info"
-    value_template: "{{ value_json.coordinator }}"
-    icon: mdi:chip
-
-# Switch for enabling joining
-switch:
-  - platform: mqtt
-    name: "Zigbee2MQTT Main join"
-    state_topic: "zigbee2mqtt/bridge/info"
-    value_template: '{{ value_json.permit_join | lower }}'
-    command_topic: "zigbee2mqtt/bridge/request/permit_join"
-    payload_on: "true"
-    payload_off: "false"
+mqtt:
+  sensor:
+    # Sensor for monitoring the bridge state
+    - name: Zigbee2MQTT Bridge state
+      unique_id: zigbee2mqtt_bridge_state_sensor
+      state_topic: "zigbee2mqtt/bridge/state"
+      icon: mdi:router-wireless
+    # Sensor for Showing the Zigbee2MQTT Version
+    - name: Zigbee2MQTT Version
+      unique_id: zigbee2mqtt_version_sensor
+      state_topic: "zigbee2mqtt/bridge/info"
+      value_template: "{{ value_json.version }}"
+      icon: mdi:zigbee
+    # Sensor for Showing the Coordinator Version
+    - name: Zigbee2MQTT Coordinator Version
+      unique_id: zigbee2mqtt_coordinator_version_sensor
+      state_topic: "zigbee2mqtt/bridge/info"
+      value_template: "{{ value_json.coordinator.meta.revision }}"
+      icon: mdi:chip
+    - name: Zigbee2mqtt Networkmap
+      unique_id: zigbee2mqtt_networkmap_sensor
+      # if you change base_topic of Zigbee2mqtt, change state_topic accordingly
+      state_topic: zigbee2mqtt/bridge/networkmap/raw
+      value_template: >-
+        {{ now().strftime('%Y-%m-%d %H:%M:%S') }}
+      # again, if you change base_topic of Zigbee2mqtt, change json_attributes_topic accordingly
+      json_attributes_topic: zigbee2mqtt/bridge/networkmap/raw
+    
+  # Switch for enabling joining
+  switch:
+    - name: "Zigbee2MQTT Main join"
+      unique_id: zigbee2mqtt_main_join_switch
+      state_topic: "zigbee2mqtt/bridge/info"
+      value_template: '{{ value_json.permit_join | lower }}'
+      command_topic: "zigbee2mqtt/bridge/request/permit_join"
+      payload_on: "true"
+      payload_off: "false"
 
 automation:
   # Automation for sending MQTT message on input select change
@@ -311,7 +335,7 @@ show_header_toggle: false
 entities:
   - entity: sensor.zigbee2mqtt_bridge_state
   - entity: sensor.zigbee2mqtt_version
-  - entity: sensor.coordinator_version
+  - entity: sensor.zigbee2mqtt_coordinator_version
   - entity: input_select.zigbee2mqtt_log_level
   - type: divider
   - entity: switch.zigbee2mqtt_main_join
@@ -330,8 +354,3 @@ entities:
 
 ## Zigbee Network Map (Custom Card)
 [Zigbee Network Map Home Assistant Custom Card](https://github.com/azuwis/zigbee2mqtt-networkmap/).
-
-## Zigbee Network Map (Custom Component)
-[Zigbee Network Map Home Assistant addon](https://github.com/rgruebel/ha_zigbee2mqtt_networkmap).
-
-**NOTE:** This addon is not password protected (if you have provided external access to your Home Assistant instance **EVERYONE** can access your Network Map).

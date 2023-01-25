@@ -16,7 +16,7 @@ pageClass: device-page
 |     |     |
 |-----|-----|
 | Model | 3RDS17BZ  |
-| Vendor  | Third Reality  |
+| Vendor  | [Third Reality](/supported-devices/#v=Third%20Reality)  |
 | Description | Door sensor |
 | Exposes | contact, battery_low, battery, voltage, linkquality |
 | Picture | ![Third Reality 3RDS17BZ](https://www.zigbee2mqtt.io/images/devices/3RDS17BZ.jpg) |
@@ -26,6 +26,9 @@ pageClass: device-page
 
 
 <!-- Notes END: Do not edit below this line -->
+
+## OTA updates
+This device supports OTA updates, for more information see [OTA updates](../guide/usage/ota_updates.md).
 
 
 

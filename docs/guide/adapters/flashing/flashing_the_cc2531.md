@@ -20,7 +20,7 @@ The following additional hardware is required in order to flash the CC2531:
 
 ## Windows
 1. Install [SmartRF Flash programmer](http://www.ti.com/tool/flash-programmer) (**NOT V2**). This software is free but requires a Texas Instruments account in order to download.
-2. Install the [CC debugger driver](http://www.ti.com/lit/zip/swrc212) on your PC (Windows only). Before continuing, verify that the CC Debugger driver has been installed correctly. See [Figure 1. Verify Correct Driver Installation @ Chapter 5.1](http://www.ti.com/lit/ug/swru197h/swru197h.pdf). In case the CC Debugger is not recognized correctly [install the driver manually](https://www.youtube.com/watch?v=jyKrxxXOvQY).
+2. Install the [CC debugger driver](https://www.ti.com/tool/CC-DEBUGGER) on your PC (Windows only). Before continuing, verify that the CC Debugger driver has been installed correctly. See [Figure 1. Verify Correct Driver Installation @ Chapter 5.1](http://www.ti.com/lit/ug/swru197h/swru197h.pdf). In case the CC Debugger is not recognized correctly [install the driver manually](https://www.youtube.com/watch?v=jyKrxxXOvQY).
 2. Connect `CC debugger --> Downloader cable CC2531 --> CC2531 USB sniffer`.
 3. Connect **BOTH** the `CC2531 USB sniffer` and the `CC debugger` to your PC using USB.
 3. If the light on the CC debugger is RED press set reset button on the CC debugger. The light on the CC debugger should now turn GREEN. If not use [CC debugger user guide](http://www.ti.com/lit/ug/swru197h/swru197h.pdf) to troubleshoot your problem.
@@ -37,15 +37,23 @@ Credits to [@Frans-Willem](https://github.com/frans-Willem) for majority of inst
 * Ubuntu/Debian: libusb-1.0-0-dev, libboost-all-dev, autoconf, libtool
 * Fedora: dh-autoreconf, boost-devel, libusb1-devel, gcc-c++
 * Archlinux: dh-autoreconf, libusb, boost
-* macOS: brew install autoconf automake libusb boost pkgconfig libtool
+* macOS: `brew install autoconf automake libusb boost@1.76 pkgconfig libtool`
 * Raspbian: dh-autoreconf, libusb-1.0-0-dev, libboost-all-dev
 
 2. Build cc-tool
 ```bash
 git clone https://github.com/dashesy/cc-tool.git
 cd cc-tool
-./bootstrap
-./configure
+CPPFLAGS=-I/usr/local/include \
+LDFLAGS=-I/usr/local/include \
+ ./bootstrap
+
+CPPFLAGS="-I/usr/local/opt/boost@1.76/include" \
+CXXFLAGS="-std=c++0x" \
+LDFLAGS="-L/usr/local/opt/boost@1.76/lib" \
+LIBUSB_CFLAGS=-I/usr/local/include/libusb-1.0 \
+ ./configure
+
 make
 ```
 3. Connect `CC debugger --> Downloader cable CC2531 --> CC2531 USB sniffer`.

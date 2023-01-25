@@ -16,7 +16,7 @@ pageClass: device-page
 |     |     |
 |-----|-----|
 | Model | TYZS1L  |
-| Vendor  | TuYa  |
+| Vendor  | [TuYa](/supported-devices/#v=TuYa)  |
 | Description | Led strip controller HSB |
 | Exposes | light (state, color_hs), linkquality |
 | Picture | ![TuYa TYZS1L](https://www.zigbee2mqtt.io/images/devices/TYZS1L.jpg) |
@@ -53,22 +53,6 @@ This light supports the following features: `state`, `color_hs`.
 #### Transition
 For all of the above mentioned features it is possible to do a transition of the value over time. To do this add an additional property `transition` to the payload which is the transition time in seconds.
 Examples: `{"brightness":156,"transition":3}`, `{"color_temp":241,"transition":1}`.
-
-#### Moving/stepping
-Instead of setting a value (e.g. brightness) directly it is also possible to:
-- move: this will automatically move the value over time, to stop send value `stop` or `0`.
-- step: this will increment/decrement the current value by the given one.
-
-The direction of move and step can be either up or down, provide a negative value to move/step down, a positive value to move/step up.
-To do this send a payload like below to `zigbee2mqtt/FRIENDLY_NAME/set`
-````js
-{
-  "hue_move": 40, // Starts moving hue up at 40 units per second, will endlessly loop (allowed value range: -255 till 255)
-  "hue_step": -90, // Decrease hue by 90 (allowed value range: -255 till 255)
-  "saturation_move": -55, // Starts moving saturation down at -55 units per second (allowed value range: -255 till 255)
-  "saturation_step": 66, // Increase saturation by 66 (allowed value range: -255 till 255)
-}
-````
 
 ### Linkquality (numeric)
 Link quality (signal strength).

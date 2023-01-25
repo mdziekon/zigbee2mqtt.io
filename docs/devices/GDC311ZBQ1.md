@@ -16,7 +16,7 @@ pageClass: device-page
 |     |     |
 |-----|-----|
 | Model | GDC311ZBQ1  |
-| Vendor  | TuYa  |
+| Vendor  | [TuYa](/supported-devices/#v=TuYa)  |
 | Description | LoraTap garage door opener with wireless sensor |
 | Exposes | trigger, garage_door_contact, linkquality |
 | Picture | ![TuYa GDC311ZBQ1](https://www.zigbee2mqtt.io/images/devices/GDC311ZBQ1.jpg) |
@@ -40,9 +40,10 @@ To write (`/set`) a value publish a message to topic `zigbee2mqtt/FRIENDLY_NAME/
 If value equals `true` trigger is ON, if `false` OFF.
 
 ### Garage_door_contact (binary)
+Indicates if the garage door contact is closed (= true) or open (= false).
 Value can be found in the published state on the `garage_door_contact` property.
 It's not possible to read (`/get`) or write (`/set`) this value.
-If value equals `true` garage_door_contact is ON, if `false` OFF.
+If value equals `false` garage_door_contact is ON, if `true` OFF.
 
 ### Linkquality (numeric)
 Link quality (signal strength).
